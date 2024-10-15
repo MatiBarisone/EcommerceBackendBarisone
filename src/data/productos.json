@@ -1,0 +1,145 @@
+[
+     {
+          "pid": 1,
+          "title": "Campera Roja",
+          "description": "Capera Roja Otoñal",
+          "code": "1111",
+          "price": 12345,
+          "status": true,
+          "stock": 30,
+          "category": "Caperas",
+          "thumbnails": []
+     },
+     {
+          "pid": 2,
+          "title": "Campera Verde",
+          "description": "Capera Verde Primaveral",
+          "code": "1112",
+          "price": 12000,
+          "status": true,
+          "stock": 35,
+          "category": "Caperas",
+          "thumbnails": []
+     },
+     {
+          "pid": 3,
+          "title": "Campera Azul",
+          "description": "Capera Azul Primaveral",
+          "code": "1113",
+          "price": 12500,
+          "status": true,
+          "stock": 35,
+          "category": "Caperas",
+          "thumbnails": []
+     },
+     {
+          "pid": 4,
+          "title": "Campera One piece",
+          "description": "Capera One piece",
+          "code": "1114",
+          "price": 12500,
+          "status": true,
+          "stock": 35,
+          "category": "Caperas",
+          "thumbnails": []
+     },
+     {
+          "pid": 5,
+          "title": "Remera Roja",
+          "description": "Remera Roja Verano",
+          "code": "1212",
+          "price": 11500,
+          "status": true,
+          "stock": 35,
+          "category": "Remera",
+          "thumbnails": []
+     },
+     {
+          "pid": 6,
+          "title": "Remera Blanca CJ",
+          "description": "Remera Banca CJ Verano",
+          "code": "1213",
+          "price": 11000,
+          "status": true,
+          "stock": 40,
+          "category": "Remera",
+          "thumbnails": [
+               "https://acdn.mitiendanube.com/stores/614/713/products/remera-trasero-blanco1-955175fb4d25d823c716794958211406-1024-1024.jpg"
+          ]
+     },
+     {
+          "pid": 7,
+          "title": "Remera Negra",
+          "description": "Remera Negra Verano",
+          "code": "1214",
+          "price": 9000,
+          "status": true,
+          "stock": 50,
+          "category": "Remera",
+          "thumbnails": []
+     },
+     {
+          "pid": 8,
+          "title": "Lentes Rayban Aviator",
+          "description": "Lentes Rayban Aviator",
+          "code": "1311",
+          "price": 15000,
+          "status": true,
+          "stock": 25,
+          "category": "Lentes",
+          "thumbnails": [
+               "https://acdn.mitiendanube.com/stores/304/917/products/0rb3025__001_58_030a1-16dd3899486db8108115594191994479-640-0.jpg",
+               "https://opticapaesani.com.ar/5379-medium_default/ray-ban-aviator-3025-polarizado-anteojo.webp"
+          ]
+     },
+     {
+          "pid": 9,
+          "title": "Lentes Glass Transparente",
+          "description": "Lentes Glass Transparente",
+          "code": "1312",
+          "price": 5000,
+          "status": true,
+          "stock": 45,
+          "category": "Lentes",
+          "thumbnails": []
+     },
+     {
+          "pid": 10,
+          "title": "Gorra NY Blanca",
+          "description": "Gorra NY Blanca",
+          "code": "1411",
+          "price": 11000,
+          "status": true,
+          "stock": 45,
+          "category": "Gorros",
+          "thumbnails": [
+               "https://newera.com.ar/media/catalog/product/cache/06cfaa02c67cf3a5c3c05d775284c631/g/o/gorra-new-era-new-york-yankees-home-field-9forty-trucker-w3t000260-1.jpg"
+          ]
+     },
+     {
+          "pid": 11,
+          "title": "Gorro BMO",
+          "description": "Gorro BMO",
+          "code": "1412",
+          "price": 30000,
+          "status": true,
+          "stock": 15,
+          "category": "Gorros",
+          "thumbnails": [
+               "https://m.media-amazon.com/images/I/51G0AST5yPL._AC_.jpg"
+          ]
+     },
+     {
+          "pid": 12,
+          "title": "Gorra Oni",
+          "description": "Gorra Oni",
+          "code": "1413",
+          "price": 5000,
+          "status": true,
+          "stock": 60,
+          "category": "Gorros",
+          "thumbnails": [
+               "https://http2.mlstatic.com/D_NQ_NP_919032-MLM53045135076_122022-O.webp"
+          ]
+     }
+]

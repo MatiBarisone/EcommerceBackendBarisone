@@ -1,0 +1,115 @@
+[
+     {
+          "cid": 1,
+          "products": [
+               {
+                    "pid": 1,
+                    "quantity": 5
+               },
+               {
+                    "pid": 2,
+                    "quantity": 6
+               },
+               {
+                    "pid": 3,
+                    "quantity": 5
+               },
+               {
+                    "pid": 12,
+                    "quantity": 4
+               }
+          ]
+     },
+     {
+          "cid": 2,
+          "products": [
+               {
+                    "pid": 5,
+                    "quantity": 3
+               },
+               {
+                    "pid": 10,
+                    "quantity": 4
+               }
+          ]
+     },
+     {
+          "cid": 3,
+          "products": [
+               {
+                    "pid": 4,
+                    "quantity": 2
+               }
+          ]
+     },
+     {
+          "cid": 4,
+          "products": [
+               {
+                    "pid": 7,
+                    "quantity": 1
+               },
+               {
+                    "pid": 8,
+                    "quantity": 2
+               },
+               {
+                    "pid": 9,
+                    "quantity": 1
+               }
+          ]
+     },
+     {
+          "cid": 5,
+          "products": [
+               {
+                    "pid": 1,
+                    "quantity": 1
+               },
+               {
+                    "pid": 2,
+                    "quantity": 1
+               },
+               {
+                    "pid": 3,
+                    "quantity": 1
+               },
+               {
+                    "pid": 4,
+                    "quantity": 1
+               },
+               {
+                    "pid": 5,
+                    "quantity": 1
+               },
+               {
+                    "pid": 6,
+                    "quantity": 1
+               },
+               {
+                    "pid": 7,
+                    "quantity": 1
+               },
+               {
+                    "pid": 8,
+                    "quantity": 1
+               },
+               {
+                    "pid": 9,
+                    "quantity": 1
+               },
+               {
+                    "pid": 10,
+                    "quantity": 1
+               },
+               {
+                    "pid": 11,
+                    "quantity": 1
+               },
+               {
+                    "pid": 12,
+                    "quantity": 1
+               }
+          ]
+     }
+]
