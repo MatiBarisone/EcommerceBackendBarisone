@@ -1,0 +1,82 @@
+/* =================== Generico ======================== */
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: rgb(96, 96, 190);
+    padding: 15px;
+
+    a {
+        color: whitesmoke;
+        text-decoration: none;
+        margin: 5px;
+        padding: 5px;
+    }
+
+    ;
+
+    a:hover {
+        background-color: rgb(61, 61, 224);
+        ;
+    }
+
+}
+
+h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+div {
+    margin: 10px;
+}
+
+table,
+td,
+th {
+    border: 1px solid;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+button {
+    background-color: #f7352f; /* Green */
+    color: white;
+    padding: 3px;
+    margin: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+/* =================== Clases ========================== */
+
+.title {
+    text-align: center;
+}
+
+.border {
+    margin: 15px;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.container {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}

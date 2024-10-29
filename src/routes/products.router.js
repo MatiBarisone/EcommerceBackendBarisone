@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { io } from "../app.js";
 import { productosManager } from "../dao/productosManager.js";
 
 export const router = Router()
@@ -81,9 +82,9 @@ router.get('/:pid', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    
     //Validación de campos obligatorios:
     let {id, title, description, code, price, status=true, stock, category, thumbnails=[]} = req.body
+    console.log(req.body)
     if (id){
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - No se admite un ID externo, se genera de forma automatica!!` }) 
@@ -92,6 +93,7 @@ router.post('/', async (req, res) => {
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - El producto tiene que tener Titulo, Descripción, Código, Precio, Stock y Categoría de forma obligatoria. Alguno de estos falta en el Body.` })
     }
+    
     
     //Validación del tipo de dato ingresado:
     if (typeof title !== "string"){
@@ -106,10 +108,12 @@ router.post('/', async (req, res) => {
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - El Código debe ser String` })
     }
+    price = parseInt(price)
     if (typeof price !== "number"){
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - El Precio debe ser un Número` })
     }
+    stock = parseInt(stock)
     if (typeof stock !== "number"){
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - El Stock debe ser un Número` })
@@ -130,6 +134,9 @@ router.post('/', async (req, res) => {
         }
 
         let nuevoProducto = await productosManager.addProduct({title, description, code, price, status, stock, category, thumbnails})
+
+        //Emisión del servidor por nuevo producto:
+        io.emit("newProduct", nuevoProducto)
 
         res.setHeader("Content-Type", "application/json")
         res.status(201).json({ nuevoProducto })
@@ -206,6 +213,9 @@ router.delete('/:pid', async (req, res) => {
             return res.status(404).json({ error: `Error - El producto con ID=${pid} no existe ` })
         }
         await productosManager.deleteProduct(pid)
+
+        //Emisión del servidor para borrar el producto:
+        io.emit("deleteProduct", producto)
 
         res.setHeader("Content-Type", "application/json")
         res.status(200).json(`Se elimino el prodcuto con ID: ${ pid }`)

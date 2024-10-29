@@ -1,0 +1,85 @@
+<div class="title">
+    <h2>Hola! Estas en "Lista de productos en tiempo real"!</h2>
+    <p>
+        Esta página te muestra la lista de productos que tenemos en "/api/products".
+        Pero, esta es una lista dinámica (Es decir, tedrá cambios si se modifica el "/api/products")
+    </p>
+</div>
+
+<div class="container">
+
+
+    <div>
+        <form id="productForm" action="/api/products" method="post" enctype="application/json">
+
+            <div class="border">
+                <div>
+                    <h3>Si quieren agregar un producto, por favor completa este forms:</h3>
+                </div>
+
+                <div>
+                    <label for="POST-product-name">Nombre del producto: </label>
+                    <input id="POST-product-name" type="text" name="title" />
+                </div>
+
+                <div>
+                    <label for="POST-product-description">Descripción del producto: </label>
+                    <input id="POST-product-description" type="text" name="description" />
+                </div>
+
+                <div>
+                    <label for="POST-product-code">Código: </label>
+                    <input id="POST-product-code" type="text" name="code" />
+                </div>
+
+                <div>
+                    <label for="POST-product-price">Precio: </label>
+                    <input id="POST-product-price" type="number" name="price" />
+                </div>
+
+                <div>
+                    <label for="POST-product-stock">Stock: </label>
+                    <input id="POST-product-stock" type="number" name="stock" />
+                </div>
+
+                <div>
+                    <label for="POST-product-category">Categoría: </label>
+                    <input id="POST-product-category" type="text" name="category" />
+                </div>
+
+                <div>
+                    <label for="POST-product-thumbnails">Fotos (URLs): </label>
+                    <input type="text" name="thumbnails" placeholder="URL de la imagen" />
+                </div>
+                <div>
+                    <input type="submit" value="Crear producto" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div>
+        <h2>Estos son los productos actuales:</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Código</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Categoría</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody id="products">
+                <!-- Las filas de productos se añadirán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
