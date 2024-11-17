@@ -2,45 +2,45 @@
      {
           "pid": 1,
           "title": "Campera Roja",
-          "description": "Capera Roja Otoñal",
+          "description": "Campera Roja Otoñal",
           "code": "1111",
           "price": 12345,
           "status": true,
           "stock": 30,
-          "category": "Caperas",
+          "category": "Camperas",
           "thumbnails": []
      },
      {
           "pid": 2,
           "title": "Campera Verde",
-          "description": "Capera Verde Primaveral",
+          "description": "Campera Verde Primaveral",
           "code": "1112",
           "price": 12000,
           "status": true,
           "stock": 35,
-          "category": "Caperas",
+          "category": "Camperas",
           "thumbnails": []
      },
      {
           "pid": 3,
           "title": "Campera Azul",
-          "description": "Capera Azul Primaveral",
+          "description": "Campera Azul Primaveral",
           "code": "1113",
           "price": 12500,
           "status": true,
           "stock": 35,
-          "category": "Caperas",
+          "category": "Camperas",
           "thumbnails": []
      },
      {
           "pid": 4,
           "title": "Campera One piece",
-          "description": "Capera One piece",
+          "description": "Campera One piece",
           "code": "1114",
           "price": 12500,
           "status": true,
           "stock": 35,
-          "category": "Caperas",
+          "category": "Camperas",
           "thumbnails": []
      },
      {

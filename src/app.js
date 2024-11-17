@@ -49,7 +49,7 @@ const conectarDB = async() =>{
         await mongoose.connect(
             'mongodb+srv://MatiasBarisone:jPLUxgJO63aF77zI@cluster0matiasbarisone.3585v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0MatiasBarisone',
             {
-                dbName: "ecommerceBarisone"
+                dbName: "ecommerceBarisone",
             }
         )
         console.log("Date Base online :)")

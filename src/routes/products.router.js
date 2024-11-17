@@ -1,18 +1,21 @@
 import { Router } from "express";
 import { io } from "../app.js";
-import { productosManager } from "../dao/productosManager.js";
+//import { productosManager } from "../dao/productosManager.js"
+import { productosMongoManager as productosManager } from "../dao/productosMongoManager.js";
+import { isValidObjectId } from "mongoose";
 
 export const router = Router()
 
-let productPath="./src/data/productos.json"
-productosManager.setPath(productPath)
+//let productPath="./src/data/productos.json"
+//productosManager.setPath(productPath)
 
 router.get('/', async (req, res) => {
     try {
-        let productos = await productosManager.getProducts()
+        let { limit, skip, page} = req.query;
+
+        let { docs : productos, totalPages, prevPage, nextPage, hasPrevPage, hasNextPage}  = await productosManager.getProducts(page)
 
         //Limit y Skip para los productos que traigo:
-        let { limit, skip } = req.query;
         if (!limit) {
             limit = productos.length
         }
@@ -34,7 +37,22 @@ router.get('/', async (req, res) => {
         productos = productos.slice(skip, limit + skip)
 
         res.setHeader("Content-Type", "application/json")
-        res.status(200).json({ productos })
+        
+        let payload = productos
+        let prevLink = null
+        let nextLink = null
+
+        console.log(page)
+
+        if(hasPrevPage){
+            prevLink = `api/products/?page=${prevPage}`
+        }
+        if(hasNextPage){
+            nextLink = `api/products/?page=${nextPage}`
+        }
+
+        //Devolver aca todo
+        res.status(200).json({ status:200, payload, totalPages, prevPage, nextPage, page, hasPrevPage, hasNextPage, prevLink, nextLink})
 
     } catch (error) {
         console.log(error);
@@ -51,16 +69,16 @@ router.get('/', async (req, res) => {
 router.get('/:pid', async (req, res) => {
     try {
         let { pid } = req.params
-        pid = Number(pid)
-        if (isNaN(pid)) {
+        
+        if (!isValidObjectId(pid)) {
             res.setHeader("Content-Type", "application/json")
-            return res.status(400).json({ error: `Error - El ID del producto debe ser numérico` })
+            return res.status(400).json({ error: `Error - El ID del producto debe ser un ID de MongoDB` })
         }
 
-        let productos = await productosManager.getProducts()
+        let productos  = await productosManager.getAllProducts()
 
         //Aplicamos un filtro para encontrar el producto deseado:
-        let producto = productos.find(product => product.pid === pid)
+        let producto = productos.find(product => product._id == pid)
         if (!producto) {
             res.setHeader("Content-Type", "application/json")
             return res.status(404).json({ error: `Error - El producto con ID=${pid} no existe ` })
@@ -84,12 +102,11 @@ router.get('/:pid', async (req, res) => {
 router.post('/', async (req, res) => {
     //Validación de campos obligatorios:
     let {id, title, description, code, price, status=true, stock, category, thumbnails=[]} = req.body
-    console.log(req.body)
     if (id){
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - No se admite un ID externo, se genera de forma automatica!!` }) 
     }
-    if (!title | !description | !code | !price | !stock | !category | !status ){
+    if (!title || !description || !code || !price || !category || !status ){
         res.setHeader("Content-Type", "application/json")
         return res.status(400).json({ error: `Error - El producto tiene que tener Titulo, Descripción, Código, Precio, Stock y Categoría de forma obligatoria. Alguno de estos falta en el Body.` })
     }
@@ -125,7 +142,7 @@ router.post('/', async (req, res) => {
     
     //Agregar el nuevo producto al archivo validando que no exista:
     try {
-        let productos = await productosManager.getProducts()
+        let productos  = await productosManager.getAllProducts()
         
         let existe = productos.find(p=>p.code===code)
         if (existe){
@@ -164,21 +181,21 @@ router.put('/:pid', async (req, res) => {
     
     try {
         let { pid } = req.params
-        pid = Number(pid)
-        if (isNaN(pid)) {
+
+        if (!isValidObjectId(pid)) {
             res.setHeader("Content-Type", "application/json")
-            return res.status(400).json({ error: `Error - El ID del producto debe ser numérico` })
+            return res.status(400).json({ error: `Error - El ID del producto debe ser  un ID de MongoDB` })
         }
         
-        let productos = await productosManager.getProducts()
-        
-        let producto = productos.find(product => product.pid === pid)
+        let productos  = await productosManager.getAllProducts()
+
+        let producto = productos.find(product => product._id == pid)
         if (!producto) {
             res.setHeader("Content-Type", "application/json")
             return res.status(404).json({ error: `Error - El producto con ID=${pid} no existe ` })
         }
 
-        let updatedProducto = await productosManager.updateProduct(pid,req.body)
+        let updatedProducto = await productosManager.updateProduct(producto._id,req.body)
 
         res.setHeader("Content-Type", "application/json")
         res.status(201).json({ updatedProducto })
@@ -198,21 +215,21 @@ router.put('/:pid', async (req, res) => {
 router.delete('/:pid', async (req, res) => {
     try {
         let { pid } = req.params
-        pid = Number(pid)
-        if (isNaN(pid)) {
+        
+        if (!isValidObjectId(pid)) {
             res.setHeader("Content-Type", "application/json")
-            return res.status(400).json({ error: `Error - El ID del producto debe ser numérico` })
+            return res.status(400).json({ error: `Error - El ID del producto debe ser un ID de MongoDB` })
         }
 
-        let productos = await productosManager.getProducts()
+        let productos  = await productosManager.getAllProducts()
 
         //Aplicamos un filtro para encontrar el producto que deseamos eliminar:
-        let producto = productos.find(product => product.pid === pid)
+        let producto = productos.find(product => product._id == pid)
         if (!producto) {
             res.setHeader("Content-Type", "application/json")
             return res.status(404).json({ error: `Error - El producto con ID=${pid} no existe ` })
         }
-        await productosManager.deleteProduct(pid)
+        await productosManager.deleteProduct(producto._id)
 
         //Emisión del servidor para borrar el producto:
         io.emit("deleteProduct", producto)

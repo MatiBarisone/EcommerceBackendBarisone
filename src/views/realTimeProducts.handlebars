@@ -76,7 +76,20 @@
                 </tr>
             </thead>
             <tbody id="products">
-                <!-- Las filas de productos se añadirán aquí -->
+                {{#each productos}}
+                <tr>
+                    <td>{{_id}}</td>
+                    <td>{{title}}</td>
+                    <td>{{description}}</td>
+                    <td>{{code}}</td>
+                    <td>${{price}}</td>
+                    <td>{{stock}}</td>
+                    <td>{{category}}</td>
+                    <td>
+                        <button onclick="eliminarProducto('{{_id}}', this)">Eliminar</button>
+                    </td>
+                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

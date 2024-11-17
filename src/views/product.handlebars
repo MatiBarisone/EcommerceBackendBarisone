@@ -1,0 +1,33 @@
+<div class="title">
+    <h2>Producto: {{producto.title}} - Numero de ID: {{producto.pid}}</h2>
+    <h3> CODIGO: {{producto.code}} </h3>
+    <p style="padding: 10px;">
+        Descripción del producto: {{producto.description}}
+    </p>
+    <p style="padding-bottom: 10px;">
+        Categoría: {{producto.category}}
+    </p>
+
+    <p>
+        Fotos:
+        {{#each producto.thumbnails}}
+        <li style="list-style: none; padding: 10px;">
+            <img src="{{this}}" alt="Foto del producto" style="max-width: 200px; max-height: 200px;">
+        </li>
+        {{/each}}
+    </p>
+
+    <p style="padding: 10px;">
+        Precio del producto: ${{producto.price}}
+    </p>
+
+    <h3>
+        STOCK: {{producto.stock}}
+    </h3>
+
+    <button 
+        onclick="añadirAlCarrito({{producto.pid}})">
+        Añadir a Carrito
+    </button>
+
+</div>

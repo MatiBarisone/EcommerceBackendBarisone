@@ -4,6 +4,41 @@
         Esta página te muestra la lista de productos que tenemos en "/api/products".
         A su vez, esta lista es estática (Es decir, no tedrá cambios si se modifica el "/api/products")
     </p>
+    <h3 style="margin-bottom: 0;"> NOTAS IMPORTANTES </h3>
+    <p>
+        Para agregar un producto a su carrito, tiene que poner el numero de ID del mismo. (por ejemplo:
+        673a1a57ccd55c7f6eba3ed3)
+    </p>
+    <p>
+        Si no tienes carrito haz click en el siguiente botón. Se te indicara cual es el ID de tu carrito. Tienes que
+        copiarlo para poder agregar los productos al mismo.
+    </p>
+    <button onclick="generarCarrito()">
+        Generar Carrito
+    </button>
+    <p style="padding-bottom: 10px;">
+        Para ver su carrito vaya al "/cart/<b>*id de su carrito*</b>"
+    </p>
+    <hr>
+    <h3 style="margin-bottom: 0;"> FILTROS </h3>
+    <p style="padding-bottom: 5px;">
+        Para filtrar la siguiente lista usted tiene que pasar todo por Query params. Esta página admite:
+    </p>
+    <p>
+        <b>Page: </b> Devuelve la pagina que queremos buscar. En caso de no recibir page
+        esta estará en 1
+    </p>
+    <p>
+        <b>Query: </b> Va a ejecutar un filtro sobre mi lista. En caso de no recibir sort, no se hace ningun filtro
+    </p>
+    <p>
+        <b>Limit: </b> Devuelve solo el numero de elementos solicitados al momento de la
+        peticion. En caso de no recibirlo el limit será de 10
+    </p>
+    <p>
+        <b>Sort: </b> El parametro puede ser "asc" o "desc" que realiza el ordenamiento ascendente o descendente por
+        precio. En caso de no recibir sort, no se hace ningun ordenamiento
+    </p>
 </div>
 
 <div>
@@ -17,10 +52,46 @@
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Categoría</th>
+                <th>Ver Detalle</th>
+                <th>Añadir a Carrito</th>
             </tr>
         </thead>
         <tbody id="productsEstaticos">
-            <!-- Las filas de productos se añadirán aquí -->
+            {{#each productos}}
+            <tr>
+                <td>{{_id}}</td>
+                <td>{{title}}</td>
+                <td>{{description}}</td>
+                <td>{{code}}</td>
+                <td>${{price}}</td>
+                <td>{{stock}}</td>
+                <td>{{category}}</td>
+                <td>
+                    <a href="/product/{{_id}}" class="button-link">Ver Detalle</a>
+                </td>
+                <td>
+                    <button onclick="añadirAlCarrito('{{_id}}')">Añadir a Carrito</button>
+                </td>
+            </tr>
+            {{/each}}
         </tbody>
     </table>
+
+    <br>
+    <a href="/products/?page=1">Página 1</a>
+
+    {{#if hasPrevPage}}
+        <a href="/products/?page={{prevPage}}">Página Previa</a>
+    {{else}}
+        <a href="/products/?page={{prevPage}}" class="disabled">Página Previa</a>
+    {{/if}}
+
+    {{#if hasNextPage}}
+        <a href="/products/?page={{nextPage}}">Página Siguiente</a>
+    {{else}}
+        <a href="/products/?page={{nextPage}}" class="disabled">Página Siguiente</a>
+    {{/if}}
+
+    <a href="/products/?page={{totalPages}}">Ult. Página</a>
+
 </div>
